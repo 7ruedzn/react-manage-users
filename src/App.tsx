@@ -1,25 +1,23 @@
-import './App.css'
+import { useState } from 'react';
+import styles from './App.module.scss'
 import AddUser from './components/AddUser/AddUser';
-import User from './components/User/User';
-
-let users : any = [];
+import UsersList from './components/UsersList/UsersList';
 
 function App() {
+  const [users, setUsers] = useState<Array<object>>([])
 
-  const NewUser = (newUser : object) => {
-    users = [...users, newUser];
+  const NewUser = (newUser : any) => {
+    setUsers((prevUsers) => {
+      return [newUser, ...prevUsers]
+    })
   }
 
-  return (
-    <div className="App">
-      <AddUser newUser={NewUser}/>
-      {
-        users.map((user : any) => {
-          return <User text={`${user.username} (${user.age} years old)`} />
-        })
-      }
-    </div>
-  )
+    return (
+      <div className={styles.app}>
+        <AddUser newUser={NewUser}/>
+        <UsersList users={users}/>
+      </div>
+    )
 }
 
 export default App;

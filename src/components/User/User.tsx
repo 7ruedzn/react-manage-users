@@ -1,10 +1,13 @@
+import Card from '../Card/Card';
 import styles from './User.module.scss';
 
 const User = (props : any) => {
     return (
-        <div>
-            <p>{props.text}</p>
-        </div>
+        <Card>
+            <li className={styles.user}>
+                <h2>{props.text}</h2>
+            </li>
+        </Card>
     )
 }
 
